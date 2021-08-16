@@ -43,13 +43,13 @@ namespace Snake
 
                 fileStream.Seek(0, SeekOrigin.End);
 
-                streamWriter.Write(this.Name + "\n" + this.SizeX + 
+                streamWriter.Write(this.Name + "\n" + this.SizeX +
                     "\n" + this.SizeY + "\n" + this.GetPath() + "\n.1" + "\n.2\n");//Line + \n
 
                 streamWriter.Flush();
             }
 
-            catch (IOException) 
+            catch (IOException)
             {
                 Console.WriteLine("Исключение IO типа");
                 Thread.Sleep(1500);
@@ -57,11 +57,9 @@ namespace Snake
 
             finally
             {
-                if (streamWriter != null)
-                    streamWriter.Close();
+                streamWriter?.Close();
 
-                if (fileStream != null)
-                    fileStream.Close();
+                fileStream?.Close();
             }
         }
     }

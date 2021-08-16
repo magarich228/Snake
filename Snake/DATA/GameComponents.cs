@@ -34,10 +34,10 @@ namespace Snake
             return 10;
         }
 
-        private static bool FromPreloading(ref Map map, ref long Line) 
+        private static bool FromPreloading(ref Map map, ref long Line)
         {
             FileStream fileStream = default;
-            StreamReader streamReader = default;        
+            StreamReader streamReader = default;
 
             try
             {
@@ -49,12 +49,12 @@ namespace Snake
                 for (int line = 0; line < Line; line++)
                     enter = streamReader.ReadLine();
 
-                string Name = streamReader.ReadLine();  
+                string Name = streamReader.ReadLine();
                 int SizeX = int.Parse(streamReader.ReadLine());
                 int SizeY = int.Parse(streamReader.ReadLine());
 
                 Line += 6;
-                
+
                 map = new Map(SizeY, SizeX, Name, false);
             }
             catch (IOException) { return true; }
@@ -62,11 +62,9 @@ namespace Snake
 
             finally
             {
-                if (streamReader != null)
-                    streamReader.Close();
+                streamReader?.Close();
 
-                if (fileStream != null)
-                    fileStream.Close();
+                fileStream?.Close();
             }
 
             return false;
@@ -125,20 +123,15 @@ namespace Snake
 
             finally
             {
-                if (streamReader != null)
-                    streamReader.Close();
+                streamReader?.Close();
 
-                if (streamWriter != null)
-                    streamWriter.Close();
+                streamWriter?.Close();
 
-                if (stringWriter != null)
-                    stringWriter.Close();
+                stringWriter?.Close();
 
-                if (stringReader != null)
-                    stringReader.Close();
+                stringReader?.Close();
 
-                if (fileStream != null)
-                    fileStream.Close();
+                fileStream?.Close();
             }
 
             RemoveNullInPreloading();
@@ -200,8 +193,8 @@ namespace Snake
                 streamWriter.WriteLine(stringReader.ReadToEnd());
                 streamWriter.Flush();
             }
-            catch (IOException ob) 
-            { 
+            catch (IOException ob)
+            {
                 Console.WriteLine(ob.Message + " in GameConponents-RemoveNull");
                 Thread.Sleep(3000);
             }
@@ -209,20 +202,15 @@ namespace Snake
 
             finally
             {
-                if (streamReader != null)
-                    streamReader.Close();
+                streamReader?.Close();
 
-                if (streamWriter != null)
-                    streamWriter.Close();
+                streamWriter?.Close();
 
-                if (stringWriter != null)
-                    stringWriter.Close();
+                stringWriter?.Close();
 
-                if (stringReader != null)
-                    stringReader.Close();
+                stringReader?.Close();
 
-                if (fileStream != null)
-                    fileStream.Close();
+                fileStream?.Close();
             }
         }
     }
