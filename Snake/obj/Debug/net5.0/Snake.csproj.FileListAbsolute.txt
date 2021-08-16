@@ -1,0 +1,16 @@
+C:\Users\kiril\source\repos\Snake\Snake\obj\Debug\net5.0\Snake.csproj.AssemblyReference.cache
+C:\Users\kiril\source\repos\Snake\Snake\obj\Debug\net5.0\Snake.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kiril\source\repos\Snake\Snake\obj\Debug\net5.0\Snake.AssemblyInfoInputs.cache
+C:\Users\kiril\source\repos\Snake\Snake\obj\Debug\net5.0\Snake.AssemblyInfo.cs
+C:\Users\kiril\source\repos\Snake\Snake\obj\Debug\net5.0\Snake.csproj.CoreCompileInputs.cache
+C:\Users\kiril\source\repos\Snake\Snake\bin\Debug\net5.0\Snake.exe
+C:\Users\kiril\source\repos\Snake\Snake\bin\Debug\net5.0\Snake.deps.json
+C:\Users\kiril\source\repos\Snake\Snake\bin\Debug\net5.0\Snake.runtimeconfig.json
+C:\Users\kiril\source\repos\Snake\Snake\bin\Debug\net5.0\Snake.runtimeconfig.dev.json
+C:\Users\kiril\source\repos\Snake\Snake\bin\Debug\net5.0\Snake.dll
+C:\Users\kiril\source\repos\Snake\Snake\bin\Debug\net5.0\ref\Snake.dll
+C:\Users\kiril\source\repos\Snake\Snake\bin\Debug\net5.0\Snake.pdb
+C:\Users\kiril\source\repos\Snake\Snake\obj\Debug\net5.0\Snake.dll
+C:\Users\kiril\source\repos\Snake\Snake\obj\Debug\net5.0\ref\Snake.dll
+C:\Users\kiril\source\repos\Snake\Snake\obj\Debug\net5.0\Snake.pdb
+C:\Users\kiril\source\repos\Snake\Snake\obj\Debug\net5.0\Snake.genruntimeconfig.cache
