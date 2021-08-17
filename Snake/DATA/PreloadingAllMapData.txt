@@ -16,4 +16,10 @@ empty
 C:\Users\kiril\source\repos\Snake\Snake\DATA\empty
 .1
 .2
+test
+20
+40
+C:\Users\kiril\source\repos\Snake\Snake\DATA\test
+.1
+.2
 
