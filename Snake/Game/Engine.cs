@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Diagnostics;
 
 namespace Snake
 {
@@ -84,8 +85,12 @@ namespace Snake
             GameEngine.GenerateBonuses();
             Render.GetComponent().MatrixRender(ThisGameSettings.Map.matrix, 0, 0, true);
 
+            Stopwatch stopwatch = new Stopwatch();
+
             while (!EndCycle)
             {
+                stopwatch.Start();
+
                 if (AllSnake.Length == 0)
                     GameWindow.Run();
 
@@ -101,7 +106,12 @@ namespace Snake
                 DownloadSnakesOnMatrix();
                 Render.GetComponent().MatrixRender(ThisGameSettings.Map.matrix, 0, 0, true);
 
-                Thread.Sleep(ThisGameSettings.GameTempo);
+                Console.SetCursorPosition(0, 0);
+                Console.Write(ThisGameSettings.GameTempo - (int)stopwatch.ElapsedMilliseconds);
+                Thread.Sleep(ThisGameSettings.GameTempo - (int)stopwatch.ElapsedMilliseconds > 0 ?
+                    ThisGameSettings.GameTempo - (int)stopwatch.ElapsedMilliseconds : 0);
+
+                stopwatch.Restart();
 
                 GameEngine.GameCycleItaretion++;
             }
