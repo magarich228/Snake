@@ -16,6 +16,8 @@ namespace Snake
 
         int[] EndElementXY = new int[2];
 
+        public bool _Death { get; set; }
+
         public IController Control
         {
             get => control;
@@ -131,7 +133,7 @@ namespace Snake
             GrowCount += numOfElement;
         }
 
-        public void Death(bool Plus = false)
+        public void Death(int death = 0)
         {
             if (GameComponents.Player != null && this.GetHashCode() == GameComponents.Player.GetHashCode())
             {
@@ -145,7 +147,7 @@ namespace Snake
                 Engine.AllSnake[Engine.AllSnake.Length - 1] = null;
             }
 
-            for (int index = 0; index < Engine.GetComponent().CountSnake(GameComponents.Bots) + (Plus? 1: 0); index++)
+            for (int index = 0; index < Engine.GetComponent().CountSnake(GameComponents.Bots) + death; index++)
             {
                 if (GameComponents.Bots[index] != null && GameComponents.Bots[index].GetHashCode() == this.GetHashCode())
                 {

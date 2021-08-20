@@ -93,7 +93,7 @@ namespace Snake
                     GameComponents.Player?.Control.Read();
                 else Read();
 
-                for (int index = 0; index < AllSnake.Length - (GameComponents.Player != null ? 1: 0); index++)
+                for (int index = 0; index < AllSnake.Length - (GameComponents.Player != null ? 1 : 0); index++)
                     AllSnake[index].Control.Read();
 
                 GameEngine.Update();
@@ -111,71 +111,75 @@ namespace Snake
         {
             for (int index = 0; index < AllSnake.Length; index++)
             {
-                if (AllSnake[index] != null)
-                    for (int wallsIndex = 0; wallsIndex < Collaiders.Walls.Length; wallsIndex++)
+                for (int wallsIndex = 0; wallsIndex < Collaiders.Walls.Length; wallsIndex++)
+                {
+                    if (AllSnake[index] != null && AllSnake[index].X == Collaiders.Walls[wallsIndex].X
+                        && AllSnake[index].Y == Collaiders.Walls[wallsIndex].Y)
+
+                        AllSnake[index]._Death = true;
+                }
+
+                for (int snakesTailsIndex = 0; snakesTailsIndex < Collaiders.SnakesTails.Length; snakesTailsIndex++)
+                {
+                    if (AllSnake[index] != null && AllSnake[index].X == Collaiders.SnakesTails[snakesTailsIndex].X
+                        && AllSnake[index].Y == Collaiders.SnakesTails[snakesTailsIndex].Y)
+
+                        AllSnake[index]._Death = true;
+                }
+
+                for (int snakesHeadIndex = 0; snakesHeadIndex < AllSnake.Length; snakesHeadIndex++)
+                {
+                    if (AllSnake[index] != null && AllSnake[snakesHeadIndex] != null && AllSnake[index].GetHashCode() != AllSnake[snakesHeadIndex].GetHashCode() &&
+                        AllSnake[index].X == AllSnake[snakesHeadIndex].X && AllSnake[index].Y == AllSnake[snakesHeadIndex].Y)
                     {
-                        if (AllSnake[index] != null && AllSnake[index].X == Collaiders.Walls[wallsIndex].X
-                            && AllSnake[index].Y == Collaiders.Walls[wallsIndex].Y)
+                        AllSnake[index]._Death = true;
 
-                            AllSnake[index].Death();
+                        AllSnake[snakesHeadIndex]._Death = true;
                     }
+                }
 
-                if (AllSnake[index] != null)
-                    for (int snakesTailsIndex = 0; snakesTailsIndex < Collaiders.SnakesTails.Length; snakesTailsIndex++)
+                for (int allBonusesIndex = 0; GameGenerate.Bonuses != null && allBonusesIndex < GameGenerate.Bonuses.Length; allBonusesIndex++)
+                {
+                    if (GameGenerate.Bonuses[allBonusesIndex] == null)
+                        continue;
+
+                    switch (GameGenerate.Bonuses[allBonusesIndex].TypeOb)
                     {
-                        if (AllSnake[index] != null && AllSnake[index].X == Collaiders.SnakesTails[snakesTailsIndex].X
-                            && AllSnake[index].Y == Collaiders.SnakesTails[snakesTailsIndex].Y)
-                        {
-                            AllSnake[index].Death();
-                        }
+                        case Type.Bonus:
+
+                            if (AllSnake[index].Y == ((Bonus)GameGenerate.Bonuses[allBonusesIndex]).Y &&
+                                AllSnake[index].X == ((Bonus)GameGenerate.Bonuses[allBonusesIndex]).X)
+                            {
+                                AllSnake[index].Grow(numOfElement: 1);
+
+                                GameGenerate.Bonuses[allBonusesIndex] = null;
+                            }
+
+                            break;
+
+                        case Type.SpecialBonus:
+
+                            if (AllSnake[index].Y == ((SpecialBonus)GameGenerate.Bonuses[allBonusesIndex]).Y &&
+                                AllSnake[index].X == ((SpecialBonus)GameGenerate.Bonuses[allBonusesIndex]).X)
+                            {
+                                AllSnake[index].Grow(numOfElement: 3);
+
+                                GameGenerate.Bonuses[allBonusesIndex] = null;
+                            }
+
+                            break;
                     }
-
-                if (AllSnake[index] != null)
-                    for (int snakesHeadIndex = 0; snakesHeadIndex < AllSnake.Length; snakesHeadIndex++)
-                    {
-                        if (AllSnake[index] != null && AllSnake[snakesHeadIndex] != null && AllSnake[index].GetHashCode() != AllSnake[snakesHeadIndex].GetHashCode() &&
-                            AllSnake[index].X == AllSnake[snakesHeadIndex].X && AllSnake[index].Y == AllSnake[snakesHeadIndex].Y)
-                        {
-                            AllSnake[index].Death();
-
-                            AllSnake[snakesHeadIndex].Death(true);
-                        }
-                    }
-
-                if (AllSnake[index] != null)
-                    for (int allBonusesIndex = 0; GameGenerate.Bonuses != null && allBonusesIndex < GameGenerate.Bonuses.Length; allBonusesIndex++)
-                    {
-                        if (GameGenerate.Bonuses[allBonusesIndex] == null)
-                            continue;
-
-                        switch (GameGenerate.Bonuses[allBonusesIndex].TypeOb)
-                        {
-                            case Type.Bonus:
-
-                                if (AllSnake[index].Y == ((Bonus)GameGenerate.Bonuses[allBonusesIndex]).Y &&
-                                    AllSnake[index].X == ((Bonus)GameGenerate.Bonuses[allBonusesIndex]).X)
-                                {
-                                    AllSnake[index].Grow(numOfElement: 1);
-
-                                    GameGenerate.Bonuses[allBonusesIndex] = null;
-                                }
-
-                                break;
-
-                            case Type.SpecialBonus:
-
-                                if (AllSnake[index].Y == ((SpecialBonus)GameGenerate.Bonuses[allBonusesIndex]).Y &&
-                                    AllSnake[index].X == ((SpecialBonus)GameGenerate.Bonuses[allBonusesIndex]).X)
-                                {
-                                    AllSnake[index].Grow(numOfElement: 3);
-
-                                    GameGenerate.Bonuses[allBonusesIndex] = null;
-                                }
-
-                                break;
-                        }
-                    }
+                }
             }
+
+            int d = default;
+
+            for (int count = 0; count < AllSnake.Length; count++)
+                if (AllSnake[count]._Death)
+                {
+                    AllSnake[count].Death(d);
+                    d++;
+                }
         }
 
         public int CountSnake()

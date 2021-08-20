@@ -10,10 +10,10 @@ EmptyBox
 C:\Users\kiril\source\repos\Snake\Snake\DATA\EmptyBox
 .1
 .2
-
 empty
 30
 30
 C:\Users\kiril\source\repos\Snake\Snake\DATA\empty
 .1
 .2
+
