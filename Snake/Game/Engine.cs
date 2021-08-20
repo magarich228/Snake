@@ -112,23 +112,19 @@ namespace Snake
             for (int index = 0; index < AllSnake.Length; index++)
             {
                 for (int wallsIndex = 0; wallsIndex < Collaiders.Walls.Length; wallsIndex++)
-                {
-                    if (AllSnake[index] != null && AllSnake[index].X == Collaiders.Walls[wallsIndex].X
-                        && AllSnake[index].Y == Collaiders.Walls[wallsIndex].Y)
-
-                        AllSnake[index]._Death = true;
-                }
+                
+                    AllSnake[index]._Death = AllSnake[index] != null && AllSnake[index].X == Collaiders.Walls[wallsIndex].X
+                        && AllSnake[index].Y == Collaiders.Walls[wallsIndex].Y ? true : AllSnake[index]._Death;
+                
 
                 for (int snakesTailsIndex = 0; snakesTailsIndex < Collaiders.SnakesTails.Length; snakesTailsIndex++)
-                {
-                    if (AllSnake[index] != null && AllSnake[index].X == Collaiders.SnakesTails[snakesTailsIndex].X
-                        && AllSnake[index].Y == Collaiders.SnakesTails[snakesTailsIndex].Y)
-
-                        AllSnake[index]._Death = true;
-                }
+                
+                    AllSnake[index]._Death = AllSnake[index] != null && AllSnake[index].X == Collaiders.SnakesTails[snakesTailsIndex].X
+                        && AllSnake[index].Y == Collaiders.SnakesTails[snakesTailsIndex].Y ? true : AllSnake[index]._Death;
+                
 
                 for (int snakesHeadIndex = 0; snakesHeadIndex < AllSnake.Length; snakesHeadIndex++)
-                {
+                
                     if (AllSnake[index] != null && AllSnake[snakesHeadIndex] != null && AllSnake[index].GetHashCode() != AllSnake[snakesHeadIndex].GetHashCode() &&
                         AllSnake[index].X == AllSnake[snakesHeadIndex].X && AllSnake[index].Y == AllSnake[snakesHeadIndex].Y)
                     {
@@ -136,7 +132,7 @@ namespace Snake
 
                         AllSnake[snakesHeadIndex]._Death = true;
                     }
-                }
+                
 
                 for (int allBonusesIndex = 0; GameGenerate.Bonuses != null && allBonusesIndex < GameGenerate.Bonuses.Length; allBonusesIndex++)
                 {
