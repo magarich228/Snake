@@ -131,7 +131,7 @@ namespace Snake
             GrowCount += numOfElement;
         }
 
-        public void Death()
+        public void Death(bool Plus = false)
         {
             if (GameComponents.Player != null && this.GetHashCode() == GameComponents.Player.GetHashCode())
             {
@@ -145,7 +145,7 @@ namespace Snake
                 Engine.AllSnake[Engine.AllSnake.Length - 1] = null;
             }
 
-            for (int index = 0; index < Engine.GetComponent().CountSnake(GameComponents.Bots); index++)
+            for (int index = 0; index < Engine.GetComponent().CountSnake(GameComponents.Bots) + (Plus? 1: 0); index++)
             {
                 if (GameComponents.Bots[index] != null && GameComponents.Bots[index].GetHashCode() == this.GetHashCode())
                 {

@@ -125,8 +125,9 @@ namespace Snake
                     {
                         if (AllSnake[index] != null && AllSnake[index].X == Collaiders.SnakesTails[snakesTailsIndex].X
                             && AllSnake[index].Y == Collaiders.SnakesTails[snakesTailsIndex].Y)
-
+                        {
                             AllSnake[index].Death();
+                        }
                     }
 
                 if (AllSnake[index] != null)
@@ -137,7 +138,7 @@ namespace Snake
                         {
                             AllSnake[index].Death();
 
-                            AllSnake[snakesHeadIndex].Death();
+                            AllSnake[snakesHeadIndex].Death(true);
                         }
                     }
 

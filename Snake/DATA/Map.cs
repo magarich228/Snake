@@ -57,6 +57,7 @@ namespace Snake
 
             finally
             {
+
                 streamWriter?.Close();
 
                 fileStream?.Close();
