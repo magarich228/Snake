@@ -12,7 +12,7 @@ namespace Snake
 
         static Generate() => matrix = GameSettings.GetSettings().Map.matrix;
         
-        public void GenerateSnake() // В будущем допилить и сделать более безопасный спавн за счет метода нахождение пути и его длины
+        public bool GenerateSnake() // В будущем допилить и сделать более безопасный спавн за счет метода нахождение пути и его длины
         {
             GameComponents.Bots = new Snake[GameSettings.GetSettings().NumOfBots];
             GameComponents.Player = GameSettings.GetSettings().PlayerExist ? new Snake("@@", new PlayerControl()) : null;
@@ -20,12 +20,12 @@ namespace Snake
             for (int count = 0; count < GameComponents.Bots.Length; count++)
                 GameComponents.Bots[count] = new Snake("##", new AI(GameComponents.Bots[count]));
 
-            int countIteration = 0, maxIteration = matrix.GetLong(Axis.y) * matrix.GetLong(Axis.x) * 4 * 4;
+            int countIteration = 0, maxIteration = matrix.GetLong(Axis.y) * matrix.GetLong(Axis.x) * 4 * 3;
 
             for (int countSnake = 0; countSnake < GameComponents.Bots.Length + (GameComponents.Player != null ? 1 : 0); countSnake++)
             {
                 if (countIteration == maxIteration)
-                    throw new Exception("Not enough space on the map to accommodate so many snakes!");
+                    return false;
 
                 countIteration++;
 
@@ -175,6 +175,8 @@ namespace Snake
                         break;
                 }
             }
+
+            return true;
         }
 
         public void GenerateBonuses() 

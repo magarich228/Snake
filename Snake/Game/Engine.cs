@@ -106,8 +106,6 @@ namespace Snake
                 DownloadSnakesOnMatrix();
                 Render.GetComponent().MatrixRender(ThisGameSettings.Map.matrix, 0, 0, true);
 
-                Console.SetCursorPosition(0, 0);
-                Console.Write(ThisGameSettings.GameTempo - (int)stopwatch.ElapsedMilliseconds);
                 Thread.Sleep(ThisGameSettings.GameTempo - (int)stopwatch.ElapsedMilliseconds > 0 ?
                     ThisGameSettings.GameTempo - (int)stopwatch.ElapsedMilliseconds : 0);
 
@@ -190,7 +188,7 @@ namespace Snake
 
         public int CountSnake()
         {
-            int count = 0;
+            int count = default;
 
             for (int index = 0; index < AllSnake.Length; index++)
                 count += AllSnake[index] != null ? 1 : 0;
@@ -199,7 +197,7 @@ namespace Snake
         }
         public int CountSnake(BaseObject[] mass)
         {
-            int count = 0;
+            int count = default;
 
             for (int index = 0; index < mass.Length; index++)
                 count += mass[index] != null ? 1 : 0;
